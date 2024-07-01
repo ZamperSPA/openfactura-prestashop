@@ -214,6 +214,15 @@ class Openfactura extends Module
                 PrestaShopLogger::addLog('params: ' . json_encode($params['newOrderStatus']->name), 1);
                 $order = new Order((int)$params['id_order']);
                 $customer = new Customer((int)$order->id_customer);
+                if(strpos($customer->email,"@zamper.cl")){
+                    return;
+                }
+                if(strpos($customer->email,"@zensi.cl")){
+                    return;
+                }
+                if(strpos($customer->email,"amperstore@gmail.com")){
+                    return;
+                }
                 $sql = new DbQuery();
                 $sql->select('*');
                 $sql->from('openfactura_registry', 'c');
